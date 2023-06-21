@@ -2,6 +2,7 @@ module program_choice_counter (
     input               rst_n,
     input               clk,
     input               btn,
+    
     output reg [3:0]    program_choosen
 );
 

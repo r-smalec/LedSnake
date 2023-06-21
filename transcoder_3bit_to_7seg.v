@@ -1,5 +1,6 @@
 module transcoder_3bit_to_7seg (
 input 		[3:0] in,
+
 output reg 	[6:0] out
 );
 

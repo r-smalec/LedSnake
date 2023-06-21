@@ -1,6 +1,7 @@
 module counter (
     input               rst_n,
     input               in,
+    
     output reg [2:0]    out
 );
 

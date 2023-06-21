@@ -3,6 +3,7 @@ module prescaler #(
 ) (
     input               rst_n,
     input               clk,
+    
     output              out
 );
 
