@@ -50,7 +50,7 @@ counter frame_counter (
     .rst_n(rst_n),
     .in(new_frame_rqst),
 
-    .out(no_of_frame)
+    .cnt(no_of_frame)
 );
 
 mux frame_for_diode_choose(
@@ -71,11 +71,11 @@ shift_register #(
     .W(24)
 ) frame_to_transmit_load (
     .clk(clk),
-    .shift_en(1'b1),
+    .en(1'b1),
     .in(frame_to_transmit;),
 
-    .out_bit(bit_to_transmit),
-    .all_bits_shifted(all_bits_shifted_rst_signal)
+    .out(bit_to_transmit),
+    .done(all_bits_shifted_rst_signal)
 );
 
 prescaler #(

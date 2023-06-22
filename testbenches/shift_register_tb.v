@@ -14,11 +14,11 @@ shift_register #(
     .W(24)
 ) UUT (
     .clk(clk),
-    .shift_en(1'b1),
+    .en(1'b1),
     .in(24'b1110_0001_0101_1111_0001_0000),
 
-    .out_bit(out_bit),
-    .all_bits_shifted(all_bits_shifted)
+    .out(out_bit),
+    .done(all_bits_shifted)
 );
 
 initial
