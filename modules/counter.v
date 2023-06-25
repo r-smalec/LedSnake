@@ -1,33 +1,47 @@
 module counter #(
-    parameter           CNT_MAX = 24
+    parameter           CNT_MAX = 5'd24
 ) (
-    input               rst_n,
+    input               rstn,
     input               in,
     
-    output reg [2:0]    cnt,
+    output reg [4:0]    cnt,
     output reg          ovf
 );
 
 reg in_prev;
 
-always @ (in, rst_n)
+always @ (in, rstn)
 begin
-    if(!rst_n)
+    if(!rstn)
     begin
         cnt <= 3'd0;
         ovf <= 1'b0;
     end
+
     else
-        if(in && in_prev)
+    begin
+        if(in)
             begin
-            cnt <= cnt + 1'b1;
-            in_prev <= 1'b1;
+            if(!in_prev) // rising edge on in
+                begin
+                in_prev <= 1'b1;
+
+                if(cnt == CNT_MAX - 1)
+                    begin
+                    cnt <= 3'b0;
+                    ovf <= 1'b1;
+                    end
+                else
+                    cnt <= cnt + 1'b1;
+                end
             end
-        if(!in)
+        else
+            begin
             in_prev <= 1'b0;
+            ovf <= 1'b0;
+            end
     
-    if(cnt >= CNT_MAX)
-        ovf <= 1'b1;
+    end
 end
 
 endmodule
