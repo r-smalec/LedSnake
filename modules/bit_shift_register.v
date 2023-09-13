@@ -1,4 +1,4 @@
-module shift_register #(
+module bit_shift_register #(
     parameter W = 24
 ) (
     input               clk,
@@ -66,7 +66,7 @@ wire        all_bits_shifted;
 
 always #PERIOD clk = ~clk;
 
-shift_register #(
+bit_shift_register #(
     .W(24)
 ) UUT (
     .clk(clk),

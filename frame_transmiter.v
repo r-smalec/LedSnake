@@ -1,5 +1,5 @@
 `include "modules/mux.v"
-`include "modules/shift_register.v"
+`include "modules/bit_shift_register.v"
 `include "modules/counter.v"
 
 module frame_transmiter (
@@ -20,28 +20,18 @@ module frame_transmiter (
 
     output              all_bits_shifted,
     output              bit_to_transmit,
-    output              new_frames_set_rqst
+    output              new_frames_set_rqst,
+
+    output      [23:0]	frame_to_transmit_dbg,
+    output      [2:0]   no_of_frame_dbg
 
 );
 
-wire		    clk; 
-wire		    rstn;
+wire	[23:0]	frame_to_transmit;
+wire	[2:0]   no_of_frame;
 
-wire		    new_frame_rqst; 
-wire		    new_bit_rqst;
-
-wire	[23:0]	frame_for_led0; 
-wire	[23:0]	frame_for_led1; 
-wire	[23:0]	frame_for_led2; 
-wire	[23:0]	frame_for_led3; 
-wire	[23:0]	frame_for_led4; 
-wire	[23:0]	frame_for_led5; 
-wire	[23:0]	frame_for_led6; 
-wire	[23:0]	frame_for_led7;
-
-wire		    all_bits_shifted; 
-wire		    bit_to_transmit;
-wire            new_frames_set_rqst;
+assign no_of_frame_dbg = no_of_frame;
+assign frame_to_transmit_dbg = frame_to_transmit;
 
 counter frame_counter (
     .rstn(rstn),
@@ -67,7 +57,7 @@ mux frame_mux(
     .out(frame_to_transmit)
 );
 
-shift_regiser #(
+bit_shift_register #(
     .W(24)
 ) bits_in_frame_shift_register (
     .clk(clk),

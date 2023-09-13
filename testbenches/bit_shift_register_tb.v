@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-module shift_register_tb;
+module bit_shift_register_tb;
 
 parameter PERIOD = 40;
 parameter IN_VAL = 24'b1110_0001_0101_1111_0001_0001;
@@ -11,7 +11,7 @@ wire        out_bit;
 wire        all_bits_shifted;
 
 
-shift_register #(
+bit_shift_register #(
     .W(24)
 ) UUT (
     .clk(clk),
