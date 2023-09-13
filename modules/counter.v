@@ -21,7 +21,7 @@ begin
     else
     begin
         if(in)
-            begin
+        begin
             if(!in_prev) // rising edge on in
                 begin
                 in_prev <= 1'b1;
@@ -34,12 +34,14 @@ begin
                 else
                     cnt <= cnt + 1'b1;
                 end
-            end
+            else
+                cnt <= cnt;
+        end
         else
-            begin
+        begin
             in_prev <= 1'b0;
             ovf <= 1'b0;
-            end
+        end
     
     end
 end
