@@ -79,10 +79,10 @@ initial begin
     #PERIOD
     rstn = 1'b1;
     
-    repeat(8) begin
+//    repeat(8) begin
         #PERIOD new_bit_rqst = 1'b1;
-        #PERIOD new_bit_rqst = 1'b0;
-    end
+//        #PERIOD new_bit_rqst = 1'b0;
+//    end
 
     #100 $finish();
 end
