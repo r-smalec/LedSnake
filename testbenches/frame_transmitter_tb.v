@@ -78,7 +78,7 @@ initial begin
     rstn = 1'b0;
     #PERIOD
     rstn = 1'b1;
-    
+    new_bit_rqst = 1'b1;
     while(!new_frames_set_rqst) begin
 
         while(!all_bits_shifted) begin

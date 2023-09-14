@@ -1,10 +1,10 @@
 module counter #(
-    parameter           CNT_MAX = 4'd8
+    parameter           CNT_MAX = 5'd8
 ) (
     input               rstn,
     input               in,
     
-    output reg [3:0]    cnt,
+    output reg [4:0]    cnt,
     output reg          ovf
 );
 
@@ -14,7 +14,7 @@ always @ (in, rstn)
 begin
     if(!rstn)
     begin
-        cnt <= 4'd0;
+        cnt <= 5'd0;
         ovf <= 1'b0;
     end
 
@@ -28,11 +28,11 @@ begin
 
                 if(cnt == CNT_MAX - 1)
                     begin
-                    cnt <= 4'b0;
+                    cnt <= 5'b0;
                     ovf <= 1'b1;
                     end
                 else
-                    cnt <= cnt + 4'b1;
+                    cnt <= cnt + 5'b1;
                 end
             else
                 cnt <= cnt;
