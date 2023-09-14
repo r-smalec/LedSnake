@@ -1,6 +1,6 @@
 `timescale 1ps/1ps
 
-module frame_transmiter_tb;
+module frame_transmitter_tb;
 
 parameter PERIOD = 40;
 parameter HALF_PERIDO = PERIOD / 2;
@@ -28,7 +28,7 @@ wire	    new_frames_set_rqst;
 wire [23:0]	frame_to_transmit_dbg; 
 wire [2:0]	no_of_frame_dbg; 
 
-frame_transmiter UUT (
+frame_transmitter UUT (
 	.clk(clk), 
 	.rstn(rstn),
 
@@ -80,7 +80,7 @@ initial begin
     rstn = 1'b1;
     
     while(!new_frames_set_rqst) begin
-        
+
         while(!all_bits_shifted) begin
             #PERIOD new_bit_rqst = 1'b1;
         end
