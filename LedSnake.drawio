@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
-        <mxGraphModel dx="1183" dy="746" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="526" dy="284" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-0"/>
                 <mxCell id="WIyWlLk6GJQsqaUBKTNV-1" parent="WIyWlLk6GJQsqaUBKTNV-0"/>
@@ -352,8 +352,8 @@
                 <mxCell id="9xw9PWm49_BA5dV1pBny-111" value="&lt;span style=&quot;font-size: 11px; background-color: rgb(24, 20, 29);&quot;&gt;all_bits_shifted&lt;/span&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="9xw9PWm49_BA5dV1pBny-74" vertex="1">
                     <mxGeometry x="42.5" y="229" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="9xw9PWm49_BA5dV1pBny-113" value="reset_finish" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="9xw9PWm49_BA5dV1pBny-74" vertex="1">
-                    <mxGeometry x="197.5" y="210" width="80" height="30" as="geometry"/>
+                <mxCell id="9xw9PWm49_BA5dV1pBny-113" value="new_bit_rqst" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="9xw9PWm49_BA5dV1pBny-74" vertex="1">
+                    <mxGeometry x="192.5" y="210" width="90" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="9xw9PWm49_BA5dV1pBny-81" value="" style="endArrow=classic;html=1;rounded=0;" parent="9xw9PWm49_BA5dV1pBny-74" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
