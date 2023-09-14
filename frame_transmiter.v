@@ -1,5 +1,5 @@
 `include "modules/mux.v"
-`include "modules/bit_shift_register.v"
+`include "modules/shift_register.v"
 `include "modules/counter.v"
 
 module frame_transmiter (
@@ -33,7 +33,9 @@ wire	[2:0]   no_of_frame;
 assign no_of_frame_dbg = no_of_frame;
 assign frame_to_transmit_dbg = frame_to_transmit;
 
-counter frame_counter (
+counter #(
+    .CNT_MAX(4'd8)
+) frame_counter (
     .rstn(rstn),
     
     .in(new_frame_rqst),
@@ -57,10 +59,11 @@ mux frame_mux(
     .out(frame_to_transmit)
 );
 
-bit_shift_register #(
+shift_register #(
     .W(24)
 ) bits_in_frame_shift_register (
     .clk(clk),
+    .rstn(rstn),
 
     .en(new_bit_rqst),
     .in(frame_to_transmit),

@@ -8,7 +8,7 @@ wire	[4:0]	cnt;
 wire		    ovf; 
 
 counter #(
-    .CNT_MAX(5'd24)
+    .CNT_MAX(4'd8)
 ) UUT (
 	.rstn(rstn), 
 	.in(in), 

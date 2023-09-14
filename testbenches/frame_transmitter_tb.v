@@ -64,13 +64,13 @@ end
 
 initial begin
     frame_for_led0 = 24'b0001_0001_0001_0001_0001_0001;
-    frame_for_led1 = 24'b0010_0010_0010_0010_0010_0010;
+    frame_for_led1 = 24'b1011_1011_1011_1011_1011_1011;
     frame_for_led2 = 24'b0100_0100_0100_0100_0100_0100;
     frame_for_led3 = 24'b1000_1000_1000_1000_1000_1000;
     frame_for_led4 = 24'b1001_1001_1001_1001_1001_1001;
     frame_for_led5 = 24'b1010_1010_1010_1010_1010_1010;
     frame_for_led6 = 24'b1100_1100_1100_1100_1100_1100;
-    frame_for_led7 = 24'b1011_1011_1011_1011_1011_1011;
+    frame_for_led7 = 24'b0010_0010_0010_0010_0010_0010;
 
     new_bit_rqst = 1'b0;
     new_frame_rqst = 1'b0;
@@ -79,10 +79,15 @@ initial begin
     #PERIOD
     rstn = 1'b1;
     
-//    repeat(8) begin
-        #PERIOD new_bit_rqst = 1'b1;
-//        #PERIOD new_bit_rqst = 1'b0;
-//    end
+    while(!new_frames_set_rqst) begin
+        
+        while(!all_bits_shifted) begin
+            #PERIOD new_bit_rqst = 1'b1;
+        end
+        new_bit_rqst = 1'b0;
+        new_frame_rqst = 1'b1;
+        #PERIOD new_frame_rqst = 1'b0;
+    end
 
     #100 $finish();
 end

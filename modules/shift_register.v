@@ -55,7 +55,7 @@ always @ (posedge clk, negedge rstn) begin
             in_buff <= in_buff;
             bits_shifted <= bits_shifted;
             out <= out;
-            done <= done;
+            done <= 1'b0;
         end
     end
 end
