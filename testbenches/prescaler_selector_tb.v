@@ -5,6 +5,8 @@ module prescaler_selector_tb;
 parameter PERIOD = 40;
 parameter HALF_PERIOD = PERIOD / 2;
 parameter TWICE_PERIOD = PERIOD * 2;
+parameter S_TIME = PERIOD * 3;
+parameter L_TIME = PERIOD * 9;
 
 reg		clk; 
 reg		rstn; 
@@ -56,13 +58,31 @@ initial begin
     rstn = 1'b0;
     #PERIOD rstn = 1'b1;
 
-    while(!s_time_wait);
-    #TWICE_PERIOD s_time_measured = 1'b1;
+    while(!s_time_wait) begin
+        #1 s_time_measured = 1'b0;
+    end
+    #S_TIME s_time_measured = 1'b1;
     #PERIOD s_time_measured = 1'b0;
 
-    while(!l_time_wait);
-    #TWICE_PERIOD l_time_measured = 1'b1;
+    while(!l_time_wait) begin
+        #1 l_time_measured = 1'b0;
+    end
+    #L_TIME l_time_measured = 1'b1;
     #PERIOD l_time_measured = 1'b0;
+
+    bit_to_transmit = 1'b1;
+
+    while(!l_time_wait) begin
+        #1 l_time_measured = 1'b0;
+    end
+    #L_TIME l_time_measured = 1'b1;
+    #PERIOD l_time_measured = 1'b0;
+
+    while(!s_time_wait) begin
+        #1 s_time_measured = 1'b0;
+    end
+    #S_TIME s_time_measured = 1'b1;
+    #PERIOD s_time_measured = 1'b0;
 
     #100 $finish();
 end
