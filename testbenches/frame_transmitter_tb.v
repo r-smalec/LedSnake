@@ -3,7 +3,7 @@
 module frame_transmitter_tb;
 
 parameter PERIOD = 40;
-parameter HALF_PERIDO = PERIOD / 2;
+parameter HALF_PERIOD = PERIOD / 2;
 parameter TWICE_PERIOD = PERIOD * 2;
 
 reg		    clk; 
@@ -56,7 +56,7 @@ initial begin
 
     clk = 1'b1;
     forever begin
-        #HALF_PERIDO
+        #HALF_PERIOD
         clk = ~clk;
     end
 
