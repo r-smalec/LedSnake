@@ -17,7 +17,11 @@ module bit_transmitter #(
     output              l_time_wait_dbg,
     output              l_time_measured_dbg,
     output              s_time_wait_dbg,
-    output              s_time_measured_dbg
+    output              s_time_measured_dbg,
+
+    output [15:0]       r_time_cnt_dbg,
+    output [15:0]       l_time_cnt_dbg,
+    output [15:0]       s_time_cnt_dbg
 );
 
 
@@ -60,7 +64,9 @@ prescaler #(
     .clk(clk),
 
     .en(all_bits_shifted),
-    .out(reset_finish)
+    .out(reset_finish),
+
+    .cnt_dbg(r_time_cnt_dbg)
 );
 
 prescaler #(
@@ -69,7 +75,9 @@ prescaler #(
     .clk(clk),
     
     .en(l_time_wait),
-    .out(l_time_measured)
+    .out(l_time_measured),
+
+    .cnt_dbg(l_time_cnt_dbg)
 );
 
 prescaler #(
@@ -78,7 +86,9 @@ prescaler #(
     .clk(clk),
     
     .en(s_time_wait),
-    .out(s_time_measured)
+    .out(s_time_measured),
+
+    .cnt_dbg(s_time_cnt_dbg)
 );
 
 always @ (posedge clk) begin
