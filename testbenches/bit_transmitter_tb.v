@@ -8,7 +8,7 @@ parameter TWICE_PERIOD = PERIOD * 2;
 parameter L_TIME_SEQ = 80 * PERIOD;
 parameter S_TIME_SEQ = 40 * PERIOD;
 parameter R_TIME_SEQ = 5000 * PERIOD;
-parameter SINGLE_FULL_SEQ = L_TIME_SEQ + S_TIME_SEQ + 1000;
+parameter SINGLE_FULL_SEQ = L_TIME_SEQ + S_TIME_SEQ;
 
 reg		clk; 
 reg		rstn; 
@@ -65,7 +65,14 @@ initial begin
     bit_to_transmit = 1'b0;
     rstn = 1'b0;
     #TWICE_PERIOD rstn = 1'b1;
-    #SINGLE_FULL_SEQ
+    #TWICE_PERIOD while(!new_bit_rqst) begin
+        #PERIOD bit_to_transmit = 1'b1;    
+    end
+
+    #PERIOD bit_to_transmit = 1'b1;
+    while(!new_bit_rqst) begin
+        #PERIOD bit_to_transmit = 1'b1;    
+    end
     #100 $finish();
 end
 
