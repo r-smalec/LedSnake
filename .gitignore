@@ -1,1 +1,16 @@
-*.out
+modules/*.out
+
+vivado/*.cache/
+vivado/*.runs/
+vivado/*.srcs/
+vivado/*.data/
+vivado/*.hw/
+vivado/*.sim/
+vivado/*.xpr
+vivado/*.str
+vivado/*.jou
+vivado/*.pb
+vivado/*.dcp
+vivado/*.xml
+vivado/*.html
+vivado/*.xsa
