@@ -18,6 +18,7 @@ module prescaler_selector(
 
 reg             process_in_bit;
 reg             gen_new_bit_rqst;
+reg             half_seq_done;
 
 always @ (posedge clk, negedge rstn) begin
 
@@ -26,6 +27,7 @@ always @ (posedge clk, negedge rstn) begin
         gen_new_bit_rqst <= 1'b1;
         new_bit_rqst <= 1'b0;
 
+        half_seq_done <= 1'b0;
         l_time_wait <= 1'b0;
         s_time_wait <= 1'b0;
 
@@ -52,21 +54,28 @@ always @ (posedge clk, negedge rstn) begin
 
         // wait l time and trigger s time
         if(l_time_wait && l_time_measured) begin 
+            half_seq_done <= 1'b1;
+            
+            l_time_wait <= 1'b0;
             s_time_wait <= 1'b1;
             led_stripe_pin <= 1'b0;
         end
         
         // wait s time and trigger l time
         if(s_time_wait && s_time_measured) begin 
+            half_seq_done <= 1'b1;
+
+            s_time_wait <= 1'b0;
             l_time_wait <= 1'b1;
             led_stripe_pin <= 1'b0;
         end
 
         // after waiting for s+l time, request new bit
-        if(l_time_wait && s_time_wait && (l_time_measured || s_time_measured))  begin
+        if(half_seq_done && (l_time_measured || s_time_measured))  begin
             new_bit_rqst <= 1'b1;
             gen_new_bit_rqst <= 1'b1;
 
+            half_seq_done <= 1'b0;
             l_time_wait <= 1'b0;
             s_time_wait <= 1'b0;
         end
@@ -78,6 +87,7 @@ always @ (posedge clk, negedge rstn) begin
             new_bit_rqst <= 1'b1;
             gen_new_bit_rqst <= 1'b1;
             
+            half_seq_done <= 1'b0;
             l_time_wait <= 1'b0;
             s_time_wait <= 1'b0;
 

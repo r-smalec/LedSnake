@@ -8,6 +8,7 @@ parameter TWICE_PERIOD = PERIOD * 2;
 parameter L_TIME_SEQ = 80 * PERIOD;
 parameter S_TIME_SEQ = 40 * PERIOD;
 parameter R_TIME_SEQ = 5000 * PERIOD;
+parameter SINGLE_FULL_SEQ = L_TIME_SEQ + S_TIME_SEQ + 1000;
 
 reg		clk; 
 reg		rstn; 
@@ -64,7 +65,8 @@ initial begin
     bit_to_transmit = 1'b0;
     rstn = 1'b0;
     #TWICE_PERIOD rstn = 1'b1;
-    #L_TIME_SEQ $finish();
+    #SINGLE_FULL_SEQ
+    #100 $finish();
 end
 
 endmodule
