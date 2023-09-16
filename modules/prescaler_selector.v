@@ -2,15 +2,16 @@ module prescaler_selector(
     input                   clk,
     input                   rstn,
 
+    output reg              new_bit_rqst,
     input                   bit_to_transmit,
     input                   all_bits_shifted,
-    input                   reset_finish,
-    output reg              new_bit_rqst,
 
     output reg              l_time_wait,
     input                   l_time_measured,
     output reg              s_time_wait,
     input                   s_time_measured,
+
+    input                   reset_finish,
 
     output reg              led_stripe_pin
 );

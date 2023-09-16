@@ -1,13 +1,23 @@
-module bit_transmitter (
+module bit_transmitter #(
+    parameter L_TIME = 16'd80,
+    parameter S_TIME = 16'd40,
+    parameter R_TIME = 16'd5000
+) (
     input               clk,
     input               rstn,
 
+    output              new_bit_rqst,
     input               bit_to_transmit,
     input               all_bits_shifted,
+    output reg          new_frame_rqst,
 
-    output              new_bit_rqst,
-    output              new_frame_rqst,
-    output              led_stripe_pin
+    output              led_stripe_pin,
+
+    output              reset_finish_dbg,
+    output              l_time_wait_dbg,
+    output              l_time_measured_dbg,
+    output              s_time_wait_dbg,
+    output              s_time_measured_dbg
 );
 
 
@@ -17,38 +27,54 @@ wire            l_time_measured;
 wire            s_time_wait;
 wire            s_time_measured;
 
+assign  reset_finish_dbg = reset_finish;
+assign  l_time_wait_dbg = l_time_wait;
+assign  l_time_measured_dbg = l_time_measured;
+assign  s_time_wait_dbg = s_time_wait;
+assign  s_time_measured_dbg = s_time_measured;
+
 prescaler_selector prescaler_sel (
     .clk(clk),
     .rstn(rstn),
     
+	.new_bit_rqst(new_bit_rqst),
     .bit_to_transmit(bit_to_transmit), 
 	.all_bits_shifted(all_bits_shifted), 
-	.new_bit_rqst(new_bit_rqst),
 
 	.l_time_wait(l_time_wait), 
 	.l_time_measured(l_time_measured), 
 	.s_time_wait(s_time_wait), 
-	.s_time_measured(s_time_measured), 
+	.s_time_measured(s_time_measured),
+
+    .reset_finish(reset_finish),
 	
     .led_stripe_pin(led_stripe_pin) 
 
 );
 
-prescaler reset_prescaler (
+// Prescalers parameters assuming 100 MHz clock
+
+prescaler #(
+    .CNT_TIME_NS(R_TIME) // 50us
+) reset_prescaler (
     .clk(clk),
 
     .en(all_bits_shifted),
     .out(reset_finish)
 );
 
-prescaler l_time_prescaler (
+prescaler #(
+    .CNT_TIME_NS(L_TIME) // 800ns
+) l_time_prescaler (
     .clk(clk),
     
     .en(l_time_wait),
     .out(l_time_measured)
 );
 
-prescaler s_time_prescaler (
+prescaler #(
+    .CNT_TIME_NS(S_TIME) // 400ns
+) s_time_prescaler (
     .clk(clk),
     
     .en(s_time_wait),
