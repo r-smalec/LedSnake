@@ -1,90 +1,96 @@
-module led_snake_top;
+module led_snake_top #(
+    parameter L_TIME = 16'd80,
+    parameter S_TIME = 16'd40,
+    parameter R_TIME = 16'd5000
+) (
+    input               clk,
+    input               rstn,
 
-wire        clk;
-wire        rst_n;
-wire        btn_program_choise;
-wire [2:0]  program_choosen;
-wire [6:0]  program_choosen_7seg;
+    input       [23:0]  frame_for_led0,
+    input       [23:0]  frame_for_led1,
+    input       [23:0]  frame_for_led2,
+    input       [23:0]  frame_for_led3,
+    input       [23:0]  frame_for_led4,
+    input       [23:0]  frame_for_led5,
+    input       [23:0]  frame_for_led6,
+    input       [23:0]  frame_for_led7,
 
-wire [2:0]  program_configuration;
-wire [6:0]  program_configuration_7seg;
+    output              led_stripe_pin,
 
-wire        new_frame_rqst;
-wire [2:0]  no_of_frame;
+    output      [23:0]	frame_to_transmit_dbg,
+    output      [2:0]   no_of_frame_dbg,
 
-wire [23:0] frame_to_transmit;
-wire        bit_to_transmit;
-wire [23:0] frame_for_led0;
-wire [23:0] frame_for_led1;
-wire [23:0] frame_for_led2;
-wire [23:0] frame_for_led3;
-wire [23:0] frame_for_led4;
-wire [23:0] frame_for_led5;
-wire [23:0] frame_for_led6;
-wire [23:0] frame_for_led7;
+    output              reset_finish_dbg,
+    output              l_time_wait_dbg,
+    output              l_time_measured_dbg,
+    output              s_time_wait_dbg,
+    output              s_time_measured_dbg,
 
-wire        all_bits_shifted_rst_signal;
+    output [15:0]       r_time_cnt_dbg,
+    output [15:0]       l_time_cnt_dbg,
+    output [15:0]       s_time_cnt_dbg
+);
 
-program_choice_counter program_choice_cnt (
-    .rst_n(rst_n),
+wire [23:0]	frame_to_transmit_dbg; 
+wire [2:0]	no_of_frame_dbg; 
+
+wire	    reset_finish_dbg; 
+wire	    l_time_wait_dbg;
+wire	    l_time_measured_dbg; 
+wire	    s_time_wait_dbg; 
+wire	    s_time_measured_dbg;
+wire [15:0] r_time_cnt_dbg;
+wire [15:0] l_time_cnt_dbg;
+wire [15:0] s_time_cnt_dbg;
+
+frame_transmitter frame_trans (
+	.clk(clk), 
+	.rstn(rstn),
+
+	.new_frame_rqst(new_frame_rqst), 
+	.new_bit_rqst(new_bit_rqst),
+
+	.frame_for_led0(frame_for_led0), 
+	.frame_for_led1(frame_for_led1), 
+	.frame_for_led2(frame_for_led2), 
+	.frame_for_led3(frame_for_led3), 
+	.frame_for_led4(frame_for_led4), 
+	.frame_for_led5(frame_for_led5), 
+	.frame_for_led6(frame_for_led6), 
+	.frame_for_led7(frame_for_led7),
+
+	.all_bits_shifted(all_bits_shifted), 
+	.bit_to_transmit(bit_to_transmit), 
+	.new_frames_set_rqst(new_frames_set_rqst),
+    .frame_to_transmit_dbg(frame_to_transmit_dbg), 
+    .no_of_frame_dbg(no_of_frame_dbg) 
+
+);
+
+bit_transmitter #(
+    .L_TIME(L_TIME),
+    .S_TIME(S_TIME),
+    .R_TIME(R_TIME)
+) bit_trans (
     .clk(clk),
-    .btn(btn_program_choise),
+	.rstn(rstn),
 
-    .program_choosen(program_choosen)
-);
+	.new_bit_rqst(new_bit_rqst),
+	.bit_to_transmit(bit_to_transmit),
+	.all_bits_shifted(all_bits_shifted),
+	.new_frame_rqst(new_frame_rqst),
 
-transcoder_3bit_to_7seg program_choice_7seg (
-    .in(program_choosen),
-    
-    .out(program_choosen_7seg)
-);
+	.led_stripe_pin(led_stripe_pin),
 
-transcoder_3bit_to_7seg program_conf_7seg (
-    .in(program_configuration),
-    
-    .out(program_configuration_7seg)
-);
+    .reset_finish_dbg(reset_finish_dbg), 
+	.l_time_wait_dbg(l_time_wait_dbg), 
+	.l_time_measured_dbg(l_time_measured_dbg), 
+	.s_time_wait_dbg(s_time_wait_dbg), 
+	.s_time_measured_dbg(s_time_measured_dbg),
 
-
-counter frame_counter (
-    .rst_n(rst_n),
-    .in(new_frame_rqst),
-
-    .cnt(no_of_frame)
-);
-
-mux frame_for_diode_choose(
-    .sel(no_of_frame),
-    .in0(frame_for_led0),
-    .in1(frame_for_led1),
-    .in2(frame_for_led2),
-    .in3(frame_for_led3),
-    .in4(frame_for_led4),
-    .in5(frame_for_led5),
-    .in6(frame_for_led6),
-    .in7(frame_for_led7),
-
-    .out(frame_to_transmit)
-);
-
-shift_register #(
-    .W(24)
-) frame_to_transmit_load (
-    .clk(clk),
-    .en(1'b1),
-    .in(frame_to_transmit;),
-
-    .out(bit_to_transmit),
-    .done(all_bits_shifted_rst_signal)
-);
-
-prescaler #(
-    .CNT_TIME_NS(16'd5000)
-) reset_signal_generation (
-    .en(all_bits_shifted_rst_signal),
-    .clk(clk),
-    
-    .out(new_frame_rqst)
+    .r_time_cnt_dbg(r_time_cnt_dbg), 
+	.l_time_cnt_dbg(l_time_cnt_dbg), 
+	.s_time_cnt_dbg(s_time_cnt_dbg) 
 );
 
 endmodule

@@ -1,7 +1,3 @@
-`include "modules/mux.v"
-`include "modules/shift_register.v"
-`include "modules/counter.v"
-
 module frame_transmitter (
     input               clk,
     input               rstn,
