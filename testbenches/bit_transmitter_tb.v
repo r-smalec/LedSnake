@@ -18,6 +18,7 @@ reg		all_bits_shifted;
 wire	new_frame_rqst; 
 wire	led_stripe_pin; 
 
+wire	    r_time_wait_dbg;
 wire	    reset_finish_dbg; 
 wire	    l_time_wait_dbg;
 wire	    l_time_measured_dbg; 
@@ -30,7 +31,7 @@ wire [15:0] s_time_cnt_dbg;
 bit_transmitter #(
     .L_TIME(16'd80),
     .S_TIME(16'd40),
-    .R_TIME(16'd150)
+    .R_TIME(16'd500)
 ) UUT (
     .clk(clk),
 	.rstn(rstn),
@@ -42,6 +43,7 @@ bit_transmitter #(
 
 	.led_stripe_pin(led_stripe_pin),
 
+    .r_time_wait_dbg(r_time_wait_dbg),
     .reset_finish_dbg(reset_finish_dbg), 
 	.l_time_wait_dbg(l_time_wait_dbg), 
 	.l_time_measured_dbg(l_time_measured_dbg), 
@@ -69,9 +71,21 @@ initial begin
         #PERIOD bit_to_transmit = 1'b1;    
     end
 
-    #PERIOD bit_to_transmit = 1'b1;
-    while(!new_bit_rqst) begin
-        #PERIOD bit_to_transmit = 1'b1;    
+    repeat(2) begin
+        #PERIOD bit_to_transmit = 1'b1;
+        while(!new_bit_rqst) begin
+            #PERIOD bit_to_transmit = 1'b1;    
+        end
+    end
+
+    all_bits_shifted = 1'b1;
+    #PERIOD all_bits_shifted = 1'b0;
+
+    repeat(2) begin
+        #PERIOD bit_to_transmit = 1'b1;
+        while(!new_bit_rqst) begin
+            #PERIOD bit_to_transmit = 1'b1;    
+        end
     end
     #100 $finish();
 end

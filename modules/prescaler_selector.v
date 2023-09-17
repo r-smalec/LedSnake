@@ -6,26 +6,28 @@ module prescaler_selector(
     input                   bit_to_transmit,
     input                   all_bits_shifted,
 
+    output reg              r_time_wait,
+    input                   reset_finish,
+
     output reg              l_time_wait,
     input                   l_time_measured,
     output reg              s_time_wait,
     input                   s_time_measured,
 
-    input                   reset_finish,
-
     output reg              led_stripe_pin
 );
 
-reg             process_in_bit;
 reg             gen_new_bit_rqst;
 reg             half_seq_done;
 
 always @ (posedge clk, negedge rstn) begin
 
     if(!rstn) begin
-        process_in_bit <= 1'b1;
+
         gen_new_bit_rqst <= 1'b1;
         new_bit_rqst <= 1'b0;
+
+        r_time_wait = 1'b0;
 
         half_seq_done <= 1'b0;
         l_time_wait <= 1'b0;
@@ -34,18 +36,18 @@ always @ (posedge clk, negedge rstn) begin
         led_stripe_pin <= 1'b0;
     end
     else begin
-        if(process_in_bit) begin
-            if(gen_new_bit_rqst && !new_bit_rqst) // generate single clk pulse on new_bit_rqst
-                new_bit_rqst <= 1'b1;
-            else begin
-                new_bit_rqst <= 1'b0;
-                gen_new_bit_rqst <= 1'b0;
-            end
+
+        if(gen_new_bit_rqst && !new_bit_rqst) // generate single clk pulse on new_bit_rqst
+            new_bit_rqst <= 1'b1;
+        else begin
+            new_bit_rqst <= 1'b0;
+            gen_new_bit_rqst <= 1'b0;
         end
 
         if(new_bit_rqst) begin
 
             led_stripe_pin <= 1'b1; // if bit_to_transmit=1 set 1 for l time, if =0 set 1 for s time
+            
             if(bit_to_transmit)
                 l_time_wait <= 1'b1;
             else
@@ -53,7 +55,7 @@ always @ (posedge clk, negedge rstn) begin
         end
 
         // wait l time and trigger s time
-        if(l_time_wait && l_time_measured) begin 
+        if(l_time_wait && l_time_measured && !r_time_wait) begin 
             half_seq_done <= 1'b1;
             
             l_time_wait <= 1'b0;
@@ -62,7 +64,7 @@ always @ (posedge clk, negedge rstn) begin
         end
         
         // wait s time and trigger l time
-        if(s_time_wait && s_time_measured) begin 
+        if(s_time_wait && s_time_measured && !r_time_wait) begin 
             half_seq_done <= 1'b1;
 
             s_time_wait <= 1'b0;
@@ -71,7 +73,7 @@ always @ (posedge clk, negedge rstn) begin
         end
 
         // after waiting for s+l time, request new bit
-        if(half_seq_done && (l_time_measured || s_time_measured))  begin
+        if(half_seq_done && (l_time_measured || s_time_measured) && !r_time_wait)  begin
             new_bit_rqst <= 1'b1;
             gen_new_bit_rqst <= 1'b1;
 
@@ -80,13 +82,17 @@ always @ (posedge clk, negedge rstn) begin
             s_time_wait <= 1'b0;
         end
 
-        if(all_bits_shifted && l_time_wait && s_time_wait) // reset sequence beginning
-            led_stripe_pin <= 1'b1;
-        
+        if(all_bits_shifted) begin // reset sequence beginning
+            r_time_wait = 1'b1;
+            led_stripe_pin <= 1'b0;
+        end
+
         if(reset_finish) begin // reset sequence end, request new bit
             new_bit_rqst <= 1'b1;
             gen_new_bit_rqst <= 1'b1;
             
+            r_time_wait = 1'b0;
+
             half_seq_done <= 1'b0;
             l_time_wait <= 1'b0;
             s_time_wait <= 1'b0;

@@ -13,6 +13,7 @@ module bit_transmitter #(
 
     output              led_stripe_pin,
 
+    output              r_time_wait_dbg,
     output              reset_finish_dbg,
     output              l_time_wait_dbg,
     output              l_time_measured_dbg,
@@ -24,13 +25,14 @@ module bit_transmitter #(
     output [15:0]       s_time_cnt_dbg
 );
 
-
+wire            r_time_wait;
 wire            reset_finish;
 wire            l_time_wait;
 wire            l_time_measured;
 wire            s_time_wait;
 wire            s_time_measured;
 
+assign  r_time_wait_dbg = r_time_wait;
 assign  reset_finish_dbg = reset_finish;
 assign  l_time_wait_dbg = l_time_wait;
 assign  l_time_measured_dbg = l_time_measured;
@@ -45,6 +47,7 @@ prescaler_selector prescaler_sel (
     .bit_to_transmit(bit_to_transmit), 
 	.all_bits_shifted(all_bits_shifted), 
 
+    .r_time_wait(r_time_wait),
 	.l_time_wait(l_time_wait), 
 	.l_time_measured(l_time_measured), 
 	.s_time_wait(s_time_wait), 
@@ -63,7 +66,7 @@ prescaler #(
 ) reset_prescaler (
     .clk(clk),
 
-    .en(all_bits_shifted),
+    .en(r_time_wait),
     .out(reset_finish),
 
     .cnt_dbg(r_time_cnt_dbg)
