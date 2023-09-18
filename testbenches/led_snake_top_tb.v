@@ -25,6 +25,7 @@ reg	[23:0]	led7;
 wire [23:0]	frame_to_transmit_dbg;
 wire [2:0]	no_of_frame_dbg;
 
+wire        r_time_wait_dbg;
 wire	    reset_finish_dbg; 
 wire	    l_time_wait_dbg;
 wire	    l_time_measured_dbg; 
@@ -51,8 +52,10 @@ led_snake_top UUT (
 	.new_frames_set_rqst(new_frames_set_rqst), 
 	
     .frame_to_transmit_dbg(frame_to_transmit_dbg), 
-	.no_of_frame_dbg(no_of_frame_dbg), 
-	.reset_finish_dbg(reset_finish_dbg), 
+	.no_of_frame_dbg(no_of_frame_dbg),
+
+    .r_time_wait_dbg(r_time_wait_dbg),
+	.reset_finish_dbg(reset_finish_dbg),
 	.l_time_wait_dbg(l_time_wait_dbg), 
 	.l_time_measured_dbg(l_time_measured_dbg), 
 	.s_time_wait_dbg(s_time_wait_dbg), 
@@ -91,7 +94,7 @@ initial begin
         #PERIOD rstn = 1'b1;
     end
 
-    #100 $finish();
+    #500 $finish();
 end
 
 endmodule

@@ -21,6 +21,7 @@ module led_snake_top #(
     output      [23:0]	frame_to_transmit_dbg,
     output      [2:0]   no_of_frame_dbg,
 
+    output              r_time_wait_dbg,
     output              reset_finish_dbg,
     output              l_time_wait_dbg,
     output              l_time_measured_dbg,
@@ -35,6 +36,7 @@ module led_snake_top #(
 wire [23:0]	frame_to_transmit_dbg; 
 wire [2:0]	no_of_frame_dbg; 
 
+wire        r_time_wait_dbg;
 wire	    reset_finish_dbg; 
 wire	    l_time_wait_dbg;
 wire	    l_time_measured_dbg; 
@@ -83,6 +85,7 @@ bit_transmitter #(
 
 	.led_stripe_pin(led_stripe_pin),
 
+    .r_time_wait_dbg(r_time_wait_dbg),
     .reset_finish_dbg(reset_finish_dbg), 
 	.l_time_wait_dbg(l_time_wait_dbg), 
 	.l_time_measured_dbg(l_time_measured_dbg), 

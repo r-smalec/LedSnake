@@ -84,6 +84,9 @@ always @ (posedge clk, negedge rstn) begin
 
         if(all_bits_shifted) begin // reset sequence beginning
             r_time_wait = 1'b1;
+            l_time_wait <= 1'b0;
+            s_time_wait <= 1'b0;
+
             led_stripe_pin <= 1'b0;
         end
 
