@@ -1,5 +1,5 @@
 # LED Snake project
-LED lightening programs:
-* 1 Brightering/Fadeing of all led stripe, color chosed by configuration switches
-* 2 One diode lights at once, going to the end of a stripe and back
-* 3 Random colour on each led of a stripe
+Implementation of WS2812 protocol for addressable led diodes. Microblaze softcore -> AXI Lite IP -> HDL protocol implementation.
+<img src="img/TopDesign.png" title="Top Architecture">
+<img src="img/FrameTransmitter.png" title="Frame transmitter module">
+<img src="img/BitTransmitter.png" title="Bit transmitter module">
