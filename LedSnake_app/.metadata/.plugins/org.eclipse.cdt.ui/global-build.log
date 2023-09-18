@@ -1,0 +1,20 @@
+Nothing to build in platform 'design_1_wrapper'
+
+03:36:33 **** Incremental Build of configuration Debug for project LedSnake_app ****
+make all 
+'Building file: ../src/main.c'
+'Invoking: MicroBlaze gcc compiler'
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/main.o" -IC:/Users/rsmal/OneDrive/Dokumenty/Vitis/LedSnake_app/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_microblaze_0/bspinclude/include -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/main.d" -MT"src/main.o" -o "src/main.o" "../src/main.c"
+'Finished building: ../src/main.c'
+' '
+'Building target: LedSnake_app.elf'
+'Invoking: MicroBlaze gcc linker'
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -LC:/Users/rsmal/OneDrive/Dokumenty/Vitis/LedSnake_app/design_1_wrapper/export/design_1_wrapper/sw/design_1_wrapper/standalone_microblaze_0/bsplib/lib -mlittle-endian -mcpu=v11.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "LedSnake_app.elf"  ./src/main.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+'Finished building target: LedSnake_app.elf'
+' '
+'Invoking: MicroBlaze Print Size'
+mb-size LedSnake_app.elf  |tee "LedSnake_app.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   7712	    356	   3148	  11216	   2bd0	LedSnake_app.elf
+'Finished building: LedSnake_app.elf.size'
+' '

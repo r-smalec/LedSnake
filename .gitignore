@@ -13,3 +13,16 @@ vivado/*.dcp
 vivado/*.xml
 vivado/*.html
 vivado/*.xsa
+
+LedSnake_app/.vitis/
+LedSnake_app/.vitis_hls/
+LedSnake_app/.xilinx/
+LedSnake_app/_ide/
+LedSnake_app/.sds/
+LedSnake_app/.hw/
+LedSnake_app/.sdk/
+LedSnake_app/.logs/
+LedSnake_app/sw/
+LedSnake_app/scripts/vitis_create_hw_platform/
+LedSnake_app/*.xpr
+LedSnake_app/*.log

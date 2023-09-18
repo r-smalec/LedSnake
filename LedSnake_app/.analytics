@@ -1,0 +1,59 @@
+timestamp=[2023-09-05 23:06:39], mode=WORKBENCH_START, duration=0:00:07.255, duration_ms=7255, data={}
+timestamp=[2023-09-05 23:06:40], mode=WORKBENCH_UI_INIT, duration=0:00:00.645, duration_ms=645, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2023-09-05 23:06:44], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.243, duration_ms=2243, data={}
+timestamp=[2023-09-05 23:24:10], mode=WORKBENCH_START, duration=0:00:05.459, duration_ms=5459, data={}
+timestamp=[2023-09-05 23:24:10], mode=WORKBENCH_UI_INIT, duration=0:00:00.732, duration_ms=732, data={editors_count=0, platform_editors_count=0, projects_count=1, platform_projects_count=0, active_platform_editor=false, projects=RemoteSystemsTempFiles}
+timestamp=[2023-09-05 23:24:13], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:01.364, duration_ms=1364, data={}
+timestamp=[2023-09-05 23:29:53], mode=APP_CREATION, duration=0:00:18.171, duration_ms=18171, data={name=LedSnake_app, project_type=sdk, os=standalone, processor=microblaze, runtime=cpp, platform=design_1_wrapper, application_type=application}
+timestamp=[2023-09-05 23:38:10], mode=PLATFORM_GENERATION, duration=0:00:12.308, duration_ms=12308, data={name=design_1_wrapper}
+timestamp=[2023-09-05 23:38:14], mode=BUILD, duration=0:00:03.871, duration_ms=3871, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-05 23:38:49], mode=BUILD, duration=0:00:00.867, duration_ms=867, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-05 23:44:11], mode=BUILD, duration=0:00:00.840, duration_ms=840, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-05 23:44:53], mode=BUILD, duration=0:00:00.773, duration_ms=773, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-06 00:16:41], mode=WORKBENCH_START, duration=0:00:19.823, duration_ms=19823, data={}
+timestamp=[2023-09-06 00:16:43], mode=WORKBENCH_UI_INIT, duration=0:00:02.072, duration_ms=2072, data={editors_count=5, platform_editors_count=2, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=LedSnake_app,LedSnake_app_system,RemoteSystemsTempFiles,design_1_wrapper}
+timestamp=[2023-09-06 00:16:48], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:04.035, duration_ms=4035, data={}
+timestamp=[2023-09-13 14:27:46], mode=WORKBENCH_START, duration=0:00:16.142, duration_ms=16142, data={}
+timestamp=[2023-09-13 14:27:49], mode=WORKBENCH_UI_INIT, duration=0:00:02.274, duration_ms=2274, data={editors_count=5, platform_editors_count=2, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=LedSnake_app,LedSnake_app_system,RemoteSystemsTempFiles,design_1_wrapper}
+timestamp=[2023-09-13 14:27:57], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:02.879, duration_ms=2879, data={}
+timestamp=[2023-09-13 14:38:55], mode=PLATFORM_GENERATION, duration=0:00:27.211, duration_ms=27211, data={name=design_1_wrapper}
+timestamp=[2023-09-13 14:39:09], mode=BUILD, duration=0:00:02.876, duration_ms=2876, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 14:40:59], mode=BUILD, duration=0:00:00.303, duration_ms=303, data={name=LedSnake_app, configuration=Debug, clean_build=true}
+timestamp=[2023-09-13 14:41:01], mode=BUILD, duration=0:00:01.928, duration_ms=1928, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 14:48:01], mode=BUILD, duration=0:00:00.837, duration_ms=837, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 14:48:02], mode=BUILD, duration=0:00:00.225, duration_ms=225, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 14:53:38], mode=BUILD, duration=0:00:00.833, duration_ms=833, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 14:54:37], mode=BUILD, duration=0:00:00.974, duration_ms=974, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 15:08:26], mode=PLATFORM_GENERATION, duration=0:00:25.299, duration_ms=25299, data={name=design_1_wrapper}
+timestamp=[2023-09-13 15:08:38], mode=BUILD, duration=0:00:02.277, duration_ms=2277, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 15:08:39], mode=BUILD, duration=0:00:00.328, duration_ms=328, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 15:08:49], mode=BUILD, duration=0:00:01.741, duration_ms=1741, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:03:20], mode=PLATFORM_GENERATION, duration=0:00:28.337, duration_ms=28337, data={name=design_1_wrapper}
+timestamp=[2023-09-13 16:03:32], mode=BUILD, duration=0:00:02.052, duration_ms=2052, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:04:15], mode=BUILD, duration=0:00:00.224, duration_ms=224, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:09:12], mode=BUILD, duration=0:00:00.601, duration_ms=601, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:09:26], mode=BUILD, duration=0:00:00.915, duration_ms=915, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:24:01], mode=BUILD, duration=0:00:00.723, duration_ms=723, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-13 16:26:02], mode=BUILD, duration=0:00:00.696, duration_ms=696, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-14 00:37:41], mode=WORKBENCH_START, duration=0:00:29.181, duration_ms=29181, data={}
+timestamp=[2023-09-14 00:37:43], mode=WORKBENCH_UI_INIT, duration=0:00:01.775, duration_ms=1775, data={editors_count=1, platform_editors_count=0, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=LedSnake_app,LedSnake_app_system,RemoteSystemsTempFiles,design_1_wrapper}
+timestamp=[2023-09-14 00:37:48], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:01.957, duration_ms=1957, data={}
+timestamp=[2023-09-14 00:41:57], mode=BUILD, duration=0:00:02.225, duration_ms=2225, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-14 00:41:58], mode=BUILD, duration=0:00:00.360, duration_ms=360, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-14 00:41:59], mode=BUILD, duration=0:00:00.140, duration_ms=140, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 02:38:06], mode=WORKBENCH_START, duration=0:00:24.011, duration_ms=24011, data={}
+timestamp=[2023-09-18 02:38:09], mode=WORKBENCH_UI_INIT, duration=0:00:02.975, duration_ms=2975, data={editors_count=2, platform_editors_count=1, projects_count=4, platform_projects_count=1, active_platform_editor=false, projects=LedSnake_app,LedSnake_app_system,RemoteSystemsTempFiles,design_1_wrapper}
+timestamp=[2023-09-18 02:38:14], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:04.491, duration_ms=4491, data={}
+timestamp=[2023-09-18 02:38:45], mode=BUILD, duration=0:00:00.954, duration_ms=954, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 02:38:47], mode=BUILD, duration=0:00:00.263, duration_ms=263, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 02:41:17], mode=PLATFORM_GENERATION, duration=0:00:26.485, duration_ms=26485, data={name=design_1_wrapper}
+timestamp=[2023-09-18 02:41:31], mode=BUILD, duration=0:00:00.886, duration_ms=886, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:09:15], mode=PLATFORM_GENERATION, duration=0:00:23.656, duration_ms=23656, data={name=design_1_wrapper}
+timestamp=[2023-09-18 03:09:27], mode=BUILD, duration=0:00:02.229, duration_ms=2229, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:09:28], mode=BUILD, duration=0:00:00.441, duration_ms=441, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:27:55], mode=BUILD, duration=0:00:00.759, duration_ms=759, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:30:09], mode=BUILD, duration=0:00:00.822, duration_ms=822, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:32:02], mode=BUILD, duration=0:00:00.800, duration_ms=800, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:33:47], mode=BUILD, duration=0:00:00.692, duration_ms=692, data={name=LedSnake_app, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:33:48], mode=BUILD, duration=0:00:00.224, duration_ms=224, data={name=LedSnake_app_system, configuration=Debug, clean_build=false}
+timestamp=[2023-09-18 03:36:34], mode=BUILD, duration=0:00:00.711, duration_ms=711, data={name=LedSnake_app, configuration=Debug, clean_build=false}
